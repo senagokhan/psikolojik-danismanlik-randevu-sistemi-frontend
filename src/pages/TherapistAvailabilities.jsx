@@ -48,18 +48,19 @@ const TherapistAvailabilities = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto bg-white rounded-xl shadow-lg p-8 mt-10">
-      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Müsaitlik Ekle</h2>
-      {success && <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">{success}</div>}
-      {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{error}</div>}
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e0f7fa] via-[#f1f8e9] to-[#e3f2fd] py-12">
+      <div className="w-full max-w-lg bg-white/90 rounded-2xl shadow-2xl p-8">
+        <h2 className="text-2xl font-bold text-center mb-6 text-[#234e52]">Müsaitlik Ekle</h2>
+        {success && <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">{success}</div>}
+        {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">{error}</div>}
+        <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-gray-700 font-semibold mb-1">Başlangıç Tarihi</label>
           <input
             type="date"
             value={startDate}
             onChange={e => setStartDate(e.target.value)}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-300"
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-teal-400 transition"
             required
           />
         </div>
@@ -68,7 +69,7 @@ const TherapistAvailabilities = () => {
           <select
             value={startHour}
             onChange={e => setStartHour(e.target.value)}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-300"
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-teal-400 transition"
             required
           >
             <option value="">Saat seçin...</option>
@@ -81,7 +82,7 @@ const TherapistAvailabilities = () => {
             type="date"
             value={endDate}
             onChange={e => setEndDate(e.target.value)}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-300"
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-teal-400 transition"
             required
           />
         </div>
@@ -90,7 +91,7 @@ const TherapistAvailabilities = () => {
           <select
             value={endHour}
             onChange={e => setEndHour(e.target.value)}
-            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-pink-300"
+            className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-teal-400 transition"
             required
           >
             <option value="">Saat seçin...</option>
@@ -99,12 +100,13 @@ const TherapistAvailabilities = () => {
         </div>
         <button
           type="submit"
-          className="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-pink-300"
+          className="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-teal-300 transition"
           disabled={loading}
         >
           {loading ? 'Ekleniyor...' : 'Müsaitlik Ekle'}
         </button>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

@@ -217,65 +217,67 @@ const ClientAppointments = () => {
   const formatDateTime = (iso) => new Date(iso).toLocaleString('tr-TR', { dateStyle: 'short', timeStyle: 'short' });
 
   return (
-    <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8 mt-10">
-      <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Randevularım</h2>
-      <div className="mb-8">
-        <h3 className="text-xl font-semibold mb-2 text-gray-700">Gelecek Randevularım</h3>
-        {futureAppointments.length === 0 ? <div className="text-gray-500">Yaklaşan randevunuz yok.</div> : (
-          <ul className="space-y-4">
-            {futureAppointments.map(app => (
-              <li key={app.id} className="border p-4 rounded flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                <div>
-                  <div><b>Terapist:</b> {app.therapistName || app.therapist?.user?.fullName || 'Bilinmiyor'}</div>
-                  <div><b>Başlangıç:</b> {formatDateTime(app.startTime || app.formattedStartTime)}</div>
-                  <div><b>Durum:</b> {translateStatus(app.status)}</div>
-                </div>
-                <div className="flex gap-2 mt-2 md:mt-0">
-                  <button
-                    className="font-medium text-blue-600 hover:underline px-2 py-1 rounded border border-blue-200 hover:bg-blue-50 transition"
-                    onClick={() => openRescheduleModal(app.id)}
-                  >Değişiklik Talebi</button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#e0f7fa] via-[#f1f8e9] to-[#e3f2fd] py-12">
+      <div className="w-full max-w-3xl bg-white/90 rounded-2xl shadow-2xl p-8">
+        <h2 className="text-2xl font-bold text-center mb-6 text-[#234e52]">Randevularım</h2>
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold mb-2 text-[#234e52]">Gelecek Randevularım</h3>
+          {futureAppointments.length === 0 ? <div className="text-gray-500">Yaklaşan randevunuz yok.</div> : (
+            <ul className="space-y-4">
+              {futureAppointments.map(app => (
+                <li key={app.id} className="border border-teal-100 bg-white/80 p-4 rounded-xl flex flex-col md:flex-row md:items-center md:justify-between gap-2 shadow-sm">
+                  <div>
+                    <div><b>Terapist:</b> {app.therapistName || app.therapist?.user?.fullName || 'Bilinmiyor'}</div>
+                    <div><b>Başlangıç:</b> {formatDateTime(app.startTime || app.formattedStartTime)}</div>
+                    <div><b>Durum:</b> {translateStatus(app.status)}</div>
+                  </div>
+                  <div className="flex gap-2 mt-2 md:mt-0">
+                    <button
+                      className="font-medium text-teal-600 hover:underline px-2 py-1 rounded border border-teal-200 hover:bg-teal-50 transition"
+                      onClick={() => openRescheduleModal(app.id)}
+                    >Değişiklik Talebi</button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <div>
+          <h3 className="text-xl font-semibold mb-2 text-[#234e52]">Geçmiş Randevularım</h3>
+          {pastAppointments.length === 0 ? <div className="text-gray-500">Geçmiş randevunuz yok.</div> : (
+            <ul className="space-y-4">
+              {pastAppointments.map(app => (
+                <li key={app.id} className="border border-teal-100 bg-white/80 p-4 rounded-xl flex flex-col md:flex-row md:items-center md:justify-between gap-2 shadow-sm">
+                  <div>
+                    <div><b>Terapist:</b> {app.therapistName || app.therapist?.user?.fullName || 'Bilinmiyor'}</div>
+                    <div><b>Başlangıç:</b> {formatDateTime(app.startTime || app.formattedStartTime)}</div>
+                    <div><b>Bitiş:</b> {app.endTime ? formatDateTime(app.endTime) : '-'}</div>
+                    <div><b>Durum:</b> {translateStatus(app.status)}</div>
+                  </div>
+                  {!app.feedbackGiven && (
+                    <button
+                      className="mt-2 md:mt-0 px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600 transition"
+                      onClick={() => openFeedbackModal(app.id)}
+                    >Değerlendirme Yap</button>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+        <FeedbackModal
+          open={modalOpen}
+          onClose={closeModal}
+          appointmentId={selectedAppointmentId}
+          onSaved={handleFeedbackSaved}
+        />
+        <RescheduleModal
+          open={rescheduleModalOpen}
+          onClose={closeRescheduleModal}
+          appointmentId={selectedRescheduleId}
+          onSaved={handleRescheduleSaved}
+        />
       </div>
-      <div>
-        <h3 className="text-xl font-semibold mb-2 text-gray-700">Geçmiş Randevularım</h3>
-        {pastAppointments.length === 0 ? <div className="text-gray-500">Geçmiş randevunuz yok.</div> : (
-          <ul className="space-y-4">
-            {pastAppointments.map(app => (
-              <li key={app.id} className="border p-4 rounded flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-                <div>
-                  <div><b>Terapist:</b> {app.therapistName || app.therapist?.user?.fullName || 'Bilinmiyor'}</div>
-                  <div><b>Başlangıç:</b> {formatDateTime(app.startTime || app.formattedStartTime)}</div>
-                  <div><b>Bitiş:</b> {app.endTime ? formatDateTime(app.endTime) : '-'}</div>
-                  <div><b>Durum:</b> {translateStatus(app.status)}</div>
-                </div>
-                {!app.feedbackGiven && (
-                  <button
-                    className="mt-2 md:mt-0 px-4 py-2 bg-pink-600 text-white rounded hover:bg-pink-700 transition"
-                    onClick={() => openFeedbackModal(app.id)}
-                  >Değerlendirme Yap</button>
-                )}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      <FeedbackModal
-        open={modalOpen}
-        onClose={closeModal}
-        appointmentId={selectedAppointmentId}
-        onSaved={handleFeedbackSaved}
-      />
-      <RescheduleModal
-        open={rescheduleModalOpen}
-        onClose={closeRescheduleModal}
-        appointmentId={selectedRescheduleId}
-        onSaved={handleRescheduleSaved}
-      />
     </div>
   );
 };
