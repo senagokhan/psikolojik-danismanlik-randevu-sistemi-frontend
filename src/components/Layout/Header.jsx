@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import logo from '../../assets/images/logo.png';
@@ -6,10 +6,18 @@ import logo from '../../assets/images/logo.png';
 const Header = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleLogout = () => {
     logout();
     navigate('/login');
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/search-therapists?q=${encodeURIComponent(searchTerm.trim())}`);
+    }
   };
 
   return (
@@ -23,17 +31,18 @@ const Header = () => {
         </Link>
         <div className="flex items-center space-x-2 md:space-x-4">
           {/* Search bar */}
-          <form className="hidden md:block mr-2">
+          <form className="hidden md:block mr-2" onSubmit={handleSearch}>
             <div className="relative">
               <input
                 type="text"
-                placeholder="Arama..."
+                placeholder="Terapist ara..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 rounded-lg border border-teal-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-teal-400 transition text-sm text-[#234e52] placeholder-gray-400 shadow-sm"
-                disabled
               />
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-teal-400">
+              <button type="submit" className="absolute left-3 top-1/2 -translate-y-1/2 text-teal-400 hover:text-teal-600 transition">
                 <svg xmlns='http://www.w3.org/2000/svg' className='h-5 w-5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M21 21l-4.35-4.35m0 0A7.5 7.5 0 104.5 4.5a7.5 7.5 0 0012.15 12.15z' /></svg>
-              </span>
+              </button>
             </div>
           </form>
           <Link to="/" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Anasayfa</Link>

@@ -19,6 +19,7 @@ import BookingPage from './pages/BookingPage';
 import TherapistAvailabilities from './pages/TherapistAvailabilities';
 import TherapistAppointments from './pages/TherapistAppointments';
 import ClientAppointments from './pages/ClientAppointments';
+import TherapistSearchPage from './pages/TherapistSearchPage';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/unauthorized" element={<Unauthorized />} />
             <Route path="/therapist/:id" element={<ProfilePage />} />
+            <Route path="/search-therapists" element={<TherapistSearchPage />} />
 
             {/* Private Routes */}
             <Route element={<PrivateRoute allowedRoles={['ADMIN', 'CLIENT', 'THERAPIST']} />}>

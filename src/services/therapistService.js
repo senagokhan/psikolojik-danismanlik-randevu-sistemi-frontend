@@ -4,6 +4,14 @@ const getAllTherapists = (page = 0, size = 10) => {
   return api.get(`/therapists?page=${page}&size=${size}`);
 };
 
+const searchTherapists = (name) => {
+  return api.get(`/therapists/search?name=${encodeURIComponent(name)}`);
+};
+
+const getMyAvailabilities = () => {
+  return api.get('/therapists/me/availabilities');
+};
+
 const createTherapist = (therapistData) => {
   return api.post('/therapists', therapistData);
 };
@@ -26,6 +34,8 @@ const getTherapistById = (id) => {
 
 const therapistService = {
   getAllTherapists,
+  searchTherapists,
+  getMyAvailabilities,
   createTherapist,
   updateTherapist,
   deleteTherapist,
