@@ -26,12 +26,12 @@ const RegisterForm = () => {
     setSuccess('');
     try {
       await authService.register(formData);
-      setSuccess('Kayıt başarılı! Giriş sayfasına yönlendiriliyorsunuz...');
+      setSuccess('Registration successful! Redirecting to the login page...');
       setTimeout(() => {
         navigate('/login');
       }, 2000);
     } catch (err) {
-      setError('Kayıt başarısız. Lütfen bilgilerinizi kontrol edin.');
+      setError('Registration failed. Please check your information.');
       console.error(err);
     }
   };
@@ -39,13 +39,13 @@ const RegisterForm = () => {
   return (
     <div className="w-full max-w-md">
       <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Kayıt Ol</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Sign Up</h2>
         {error && <p className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">{error}</p>}
         {success && <p className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4">{success}</p>}
         
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="fullName">
-            Tam Adınız
+            Full Name
           </label>
           <input
             id="fullName"
@@ -75,7 +75,7 @@ const RegisterForm = () => {
         
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-            Şifre
+            Password
           </label>
           <input
             id="password"
@@ -90,7 +90,7 @@ const RegisterForm = () => {
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="birthDate">
-            Doğum Tarihi
+            Date of Birth
           </label>
           <input
             id="birthDate"
@@ -105,7 +105,7 @@ const RegisterForm = () => {
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="gender">
-            Cinsiyet
+            Gender
           </label>
           <select
             id="gender"
@@ -115,16 +115,16 @@ const RegisterForm = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
           >
-            <option value="">Seçiniz</option>
-            <option value="MALE">Erkek</option>
-            <option value="FEMALE">Kadın</option>
-            <option value="OTHER">Diğer</option>
+            <option value="">Select</option>
+            <option value="MALE">Male</option>
+            <option value="FEMALE">Female</option>
+            <option value="OTHER">Other</option>
           </select>
         </div>
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="phoneNumber">
-            Telefon Numarası
+            Phone Number
           </label>
           <input
             id="phoneNumber"
@@ -133,14 +133,14 @@ const RegisterForm = () => {
             value={formData.phoneNumber}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="05XX XXX XX XX"
+            placeholder="(+90) 5XX XXX XX XX"
             required
           />
         </div>
 
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="role">
-            Hesap Türü
+            Account Type
           </label>
           <select
             id="role"
@@ -150,9 +150,9 @@ const RegisterForm = () => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             required
           >
-            <option value="">Seçiniz</option>
-            <option value="CLIENT">Danışan</option>
-            <option value="THERAPIST">Terapist</option>
+            <option value="">Select</option>
+            <option value="CLIENT">Client</option>
+            <option value="THERAPIST">Therapist</option>
           </select>
         </div>
 
@@ -161,7 +161,7 @@ const RegisterForm = () => {
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Kayıt Ol
+            Sign Up
           </button>
         </div>
       </form>

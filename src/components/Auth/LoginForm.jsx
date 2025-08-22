@@ -28,7 +28,7 @@ const LoginForm = () => {
 
       navigate('/');
     } catch (err) {
-      setError('Giriş başarısız. Lütfen bilgilerinizi kontrol edin.');
+      setError('Login failed. Please check your credentials.');
       console.error(err);
     }
   };
@@ -36,7 +36,7 @@ const LoginForm = () => {
   return (
     <div className="w-full max-w-md">
       <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Giriş Yap</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Log In</h2>
         {error && <p className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">{error}</p>}
 
         <div className="mb-4">
@@ -52,7 +52,7 @@ const LoginForm = () => {
         </div>
 
         <div className="mb-6">
-          <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Şifre</label>
+          <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Password</label>
           <input
             id="password"
             type="password"
@@ -68,7 +68,7 @@ const LoginForm = () => {
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
-            Giriş Yap
+            Log In
           </button>
         </div>
       </form>

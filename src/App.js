@@ -51,7 +51,7 @@ function App() {
             <Route element={<PrivateRoute allowedRoles={['THERAPIST']} />}>
               <Route path="/dashboard-therapist" element={<DashboardTherapist />} />
               <Route path="/dashboard-therapist/availabilities" element={<TherapistAvailabilities />} />
-              <Route path="/panelim/randevularim" element={<TherapistAppointments />} />
+              <Route path="/dashboard-therapist/appointments" element={<TherapistAppointments />} />
             </Route>
 
             {/* Not Found Route */}

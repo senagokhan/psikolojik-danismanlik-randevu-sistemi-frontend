@@ -12,7 +12,7 @@ const HomePage = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // 5 saniyede bir değişir
+    }, 5000);
     return () => clearInterval(interval);
   }, [images.length]);
 
@@ -34,7 +34,7 @@ const HomePage = () => {
           <div className="relative overflow-hidden rounded-xl">
             <img
               src={images[currentImageIndex]}
-              alt={`CALLMIND ana görsel ${currentImageIndex + 1}`}
+              alt={`CALLMIND main image ${currentImageIndex + 1}`}
               className="w-full max-w-4xl h-auto object-contain transition-opacity duration-500"
             />
           </div>
@@ -42,7 +42,7 @@ const HomePage = () => {
           <button
             onClick={goToPrevious}
             className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-teal-600 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-            aria-label="Önceki resim"
+            aria-label="Previous image"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -51,7 +51,7 @@ const HomePage = () => {
           <button
             onClick={goToNext}
             className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-teal-600 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
-            aria-label="Sonraki resim"
+            aria-label="Next image"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -66,13 +66,13 @@ const HomePage = () => {
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentImageIndex ? 'bg-teal-500 scale-125' : 'bg-white/60 hover:bg-white/80'
                 }`}
-                aria-label={`Resim ${index + 1}`}
+                aria-label={`Image ${index + 1}`}
               />
             ))}
           </div>
         </div>
-        <h1 className="text-xl md:text-2xl font-semibold text-black text-center tracking-tight mb-2">CALLMIND ile Hayatınıza Değer Katın</h1>
-        <p className="text-base md:text-lg text-black mt-2 text-center max-w-2xl font-normal">Profesyonel terapistlerimizle daha iyi bir yaşama adım atın.</p>
+        <h1 className="text-xl md:text-2xl font-semibold text-black text-center tracking-tight mb-2">Enrich Your Life with CALLMIND</h1>
+        <p className="text-base md:text-lg text-black mt-2 text-center max-w-2xl font-normal">Take a step towards a better life with our professional therapists.</p>
       </section>
       <CallmindFeatures />
       <PopulerTherapistList />

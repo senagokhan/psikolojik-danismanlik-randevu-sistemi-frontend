@@ -11,8 +11,8 @@ const features = [
         <circle cx="15.5" cy="12" r="1" fill="currentColor" />
       </svg>
     ),
-    title: 'Ön Görüşme Veya Mesaj',
-    desc: 'Ücretsiz ön görüşme ile danışman ile tanışabilirsiniz veya mesaj atarak soru sorabilirsiniz.'
+    title: 'Pre-call or Message',
+    desc: 'Meet a counselor with a free pre-call or ask questions via message.'
   },
   {
     icon: (
@@ -22,8 +22,8 @@ const features = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.5-7.5 11.25-7.5 11.25S4.5 18 4.5 10.5a7.5 7.5 0 1115 0z" />
       </svg>
     ),
-    title: 'Lokasyondan Bağımsız',
-    desc: 'Evinizde, iş yerinizde, size en uygun ortamdan uzman danışmanlarımızdan birini seçin.'
+    title: 'Location Independent',
+    desc: 'Choose one of our expert counselors from wherever suits you best.'
   },
   {
     icon: (
@@ -32,14 +32,14 @@ const features = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3.75 7.5h16.5M4.5 21h15a1.5 1.5 0 001.5-1.5V7.5a1.5 1.5 0 00-1.5-1.5h-15A1.5 1.5 0 003 7.5v12A1.5 1.5 0 004.5 21z" />
       </svg>
     ),
-    title: 'Randevu Alın',
-    desc: 'Size uygun tarih ve saati seçin ve randevunuzu alın, dilediğiniz danışman ile seansınızı gerçekleştirin.'
+    title: 'Book an Appointment',
+    desc: 'Select a suitable date and time, book, and have your session with your preferred counselor.'
   },
 ];
 
 const CallmindFeatures = () => (
   <section className="my-12 w-full max-w-5xl mx-auto">
-    <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#234e52]">CALLMIND ile Yapabilecekleriniz</h2>
+    <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#234e52]">What You Can Do with CALLMIND</h2>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {features.map((f, i) => (
         <div key={i} className="bg-white/90 rounded-xl shadow p-6 flex flex-col items-center text-center h-full border border-teal-50">

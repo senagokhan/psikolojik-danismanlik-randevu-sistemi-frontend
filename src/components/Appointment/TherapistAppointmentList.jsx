@@ -3,18 +3,18 @@ import appointmentService from '../../services/appointmentService';
 import api from '../../services/api'; 
 
 const STATUS_TRANSLATIONS = {
-  PENDING: 'Beklemede',
-  APPROVED: 'Onaylandı',
-  COMPLETED: 'Tamamlandı',
-  CANCELLED: 'İptal Edildi',
-  RESCHEDULE_REQUESTED_BY_CLIENT: 'Danışan Tarih Değişikliği Talep Etti',
+  PENDING: 'Pending',
+  APPROVED: 'Approved',
+  COMPLETED: 'Completed',
+  CANCELLED: 'Cancelled',
+  RESCHEDULE_REQUESTED_BY_CLIENT: 'Reschedule Requested by Client',
 };
 
 const STATUS_OPTIONS = [
-  { value: 'PENDING', label: 'Beklemede' },
-  { value: 'APPROVED', label: 'Onaylandı' },
-  { value: 'COMPLETED', label: 'Tamamlandı' },
-  { value: 'CANCELLED', label: 'İptal Edildi' },
+  { value: 'PENDING', label: 'Pending' },
+  { value: 'APPROVED', label: 'Approved' },
+  { value: 'COMPLETED', label: 'Completed' },
+  { value: 'CANCELLED', label: 'Cancelled' },
 ];
 
 const TherapistAppointmentList = () => {
@@ -32,7 +32,7 @@ const TherapistAppointmentList = () => {
         setAppointments(response.data.content);
         setError('');
       } catch (err) {
-        setError('Randevular yüklenemedi.');
+        setError('Failed to load appointments.');
         console.error(err);
       } finally {
         setLoading(false);
@@ -50,20 +50,20 @@ const TherapistAppointmentList = () => {
       setAppointments(apps =>
         apps.map(app => app.id === id ? { ...app, status: newStatus } : app)
       );
-      setSuccess('Durum başarıyla güncellendi.');
+      setSuccess('Status updated successfully.');
     } catch (err) {
-      setError('Durum güncellenirken bir hata oluştu.');
+      setError('An error occurred while updating the status.');
       console.error(err);
     } finally {
       setUpdatingId(null);
     }
   };
 
-  if (loading) return <p>Yükleniyor...</p>;
+  if (loading) return <p>Loading...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
 
   if (appointments.length === 0) {
-    return <p>Henüz size atanmış bir randevu bulunmamaktadır.</p>;
+    return <p>No appointments assigned yet.</p>;
   }
 
   return (
@@ -73,17 +73,17 @@ const TherapistAppointmentList = () => {
       <table className="w-full text-sm text-left text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>
-            <th className="py-3 px-6">Danışan</th>
-            <th className="py-3 px-6">Tarih ve Saat</th>
-            <th className="py-3 px-6">Durum</th>
-            <th className="py-3 px-6">Durumu Değiştir</th>
+            <th className="py-3 px-6">Client</th>
+            <th className="py-3 px-6">Date and Time</th>
+            <th className="py-3 px-6">Status</th>
+            <th className="py-3 px-6">Change Status</th>
           </tr>
         </thead>
         <tbody>
           {appointments.map((app) => (
             <tr key={app.id} className="bg-white border-b hover:bg-gray-50">
-              <td className="py-4 px-6">{app.clientName || 'Bilinmiyor'}</td>
-              <td className="py-4 px-6">{app.formattedStartTime || 'Bilinmiyor'}</td>
+              <td className="py-4 px-6">{app.clientName || 'Unknown'}</td>
+              <td className="py-4 px-6">{app.formattedStartTime || 'Unknown'}</td>
               <td className="py-4 px-6">{STATUS_TRANSLATIONS[app.status] || app.status}</td>
               <td className="py-4 px-6">
                 <select

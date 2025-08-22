@@ -16,11 +16,11 @@ const AppointmentForm = ({ therapistId }) => {
         } else {
             therapistService.getTherapistById(therapistId)
                 .then((res) => {
-                    const name = res.data.user?.fullName || 'Terapist';
+                    const name = res.data.user?.fullName || 'Therapist';
                     setTherapistName(name);
                 })
                 .catch(() => {
-                    setError('Terapist bilgisi alınamadı.');
+                    setError('Failed to fetch therapist information.');
                     setTimeout(() => navigate('/'), 3000);
                 });
         }
@@ -32,7 +32,7 @@ const AppointmentForm = ({ therapistId }) => {
         setSuccess('');
 
         if (!appointmentTime) {
-            setError('Lütfen bir tarih ve saat seçin.');
+            setError('Please select a date and time.');
             return;
         }
 
@@ -42,12 +42,12 @@ const AppointmentForm = ({ therapistId }) => {
                 appointmentTime,
             });
 
-            setSuccess('Randevunuz başarıyla oluşturuldu! Panelinize yönlendiriliyorsunuz...');
+            setSuccess('Your appointment has been created successfully! Redirecting to your dashboard...');
             setTimeout(() => {
                 navigate('/dashboard-client');
             }, 3000);
         } catch (err) {
-            setError('Randevu oluşturulurken bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+            setError('An error occurred while creating the appointment. Please try again later.');
             console.error(err);
         }
     };
@@ -59,7 +59,7 @@ const AppointmentForm = ({ therapistId }) => {
                 className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
             >
                 <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-                    Randevu Oluştur – {therapistName}
+                    Create Appointment – {therapistName}
                 </h2>
 
                 {error && (
@@ -78,7 +78,7 @@ const AppointmentForm = ({ therapistId }) => {
                         htmlFor="appointmentTime"
                         className="block text-gray-700 text-sm font-bold mb-2"
                     >
-                        Randevu Tarihi ve Saati
+                        Appointment Date and Time
                     </label>
                     <input
                         id="appointmentTime"
@@ -91,7 +91,7 @@ const AppointmentForm = ({ therapistId }) => {
                 </div>
 
                 <p className="text-xs text-gray-600 mb-6">
-                    Not: Bu form şimdilik terapistin tüm müsaitlik durumlarını kontrol etmemektedir.
+                    Note: This form does not currently check all therapist availabilities.
                 </p>
 
                 <div className="flex items-center justify-center">
@@ -99,7 +99,7 @@ const AppointmentForm = ({ therapistId }) => {
                         type="submit"
                         className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     >
-                        Randevuyu Onayla
+                        Confirm Appointment
                     </button>
                 </div>
             </form>

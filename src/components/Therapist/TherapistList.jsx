@@ -24,11 +24,11 @@ const TherapistList = () => {
         fetchTherapists();
     }, [page]);
 
-    if (loading) return <p>Yükleniyor...</p>;
+    if (loading) return <p>Loading...</p>;
 
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-6 text-center text-[#234e52]">Terapistlerimiz</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center text-[#234e52]">Our Therapists</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {therapists.map(therapist => {
                   console.log('Therapist:', therapist);
@@ -48,7 +48,7 @@ const TherapistList = () => {
                             to={`/book-appointment/${therapist.id}`} 
                             className="mt-auto bg-teal-500 text-white font-bold py-2 px-4 rounded hover:bg-teal-600 transition duration-300"
                         >
-                            Randevu Al
+                            Book Appointment
                         </Link>
                     </div>
                   );
@@ -61,7 +61,7 @@ const TherapistList = () => {
                     disabled={page === 0}
                     className="px-4 py-2 rounded bg-gray-200 text-gray-700 disabled:opacity-50"
                 >
-                    Önceki
+                    Previous
                 </button>
                 <span className="px-4 py-2 font-semibold">{page + 1} / {totalPages}</span>
                 <button
@@ -69,7 +69,7 @@ const TherapistList = () => {
                     disabled={page + 1 >= totalPages}
                     className="px-4 py-2 rounded bg-gray-200 text-gray-700 disabled:opacity-50"
                 >
-                    Sonraki
+                    Next
                 </button>
             </div>
         </div>

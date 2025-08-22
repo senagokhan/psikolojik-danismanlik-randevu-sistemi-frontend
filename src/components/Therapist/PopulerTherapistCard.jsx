@@ -12,9 +12,9 @@ const PopulerTherapistCard = ({ id, image, fullName, specialization, experience,
         />
         <h3 className="text-lg font-bold text-[#234e52] mb-1">{fullName}</h3>
         <p className="text-teal-600 font-medium mb-1">{specialization}</p>
-        <p className="text-gray-500 text-sm mb-2">{experience} deneyim</p>
+        <p className="text-gray-500 text-sm mb-2">{experience} experience</p>
         <p className="text-gray-600 text-sm mb-3 line-clamp-2">{description}</p>
-        <span className="mt-auto inline-block bg-teal-50 text-teal-700 text-xs px-3 py-1 rounded-full font-semibold">Profili Gör</span>
+        <span className="mt-auto inline-block bg-teal-50 text-teal-700 text-xs px-3 py-1 rounded-full font-semibold">View Profile</span>
       </div>
     </Link>
   );

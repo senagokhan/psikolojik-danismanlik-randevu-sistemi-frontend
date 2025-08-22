@@ -35,7 +35,7 @@ const Header = () => {
             <div className="relative">
               <input
                 type="text"
-                placeholder="Terapist ara..."
+                placeholder="Search therapist..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 pr-4 py-2 rounded-lg border border-teal-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-teal-400 transition text-sm text-[#234e52] placeholder-gray-400 shadow-sm"
@@ -45,23 +45,23 @@ const Header = () => {
               </button>
             </div>
           </form>
-          <Link to="/" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Anasayfa</Link>
+          <Link to="/" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Home</Link>
           {user ? (
             <>
-              <Link to="/profile" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Profilim</Link>
-              {user.role === 'ADMIN' && <Link to="/admin" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Admin Paneli</Link>}
-              {user.role === 'CLIENT' && <Link to="/dashboard-client" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Panelim</Link>}
-              {user.role === 'THERAPIST' && <Link to="/dashboard-therapist" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Panelim</Link>}
-              {user.role === 'THERAPIST' && <Link to="/dashboard-therapist/availabilities" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Müsaitliklerim</Link>}
-              {user.role === 'CLIENT' && <Link to="/dashboard-client/appointments" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Randevularım</Link>}
+              <Link to="/profile" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">My Profile</Link>
+              {user.role === 'ADMIN' && <Link to="/admin" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Admin Panel</Link>}
+              {user.role === 'CLIENT' && <Link to="/dashboard-client" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">My Dashboard</Link>}
+              {user.role === 'THERAPIST' && <Link to="/dashboard-therapist" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">My Dashboard</Link>}
+              {user.role === 'THERAPIST' && <Link to="/dashboard-therapist/availabilities" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">My Availabilities</Link>}
+              {user.role === 'CLIENT' && <Link to="/dashboard-client/appointments" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">My Appointments</Link>}
               <button onClick={handleLogout} className="px-4 py-2 text-white bg-gradient-to-r from-teal-500 to-blue-400 rounded-lg font-semibold shadow hover:from-teal-600 hover:to-blue-500 transition">
-                Çıkış Yap
+                Log Out
               </button>
             </>
           ) : (
             <>
-              <Link to="/login" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Giriş Yap</Link>
-              <Link to="/register" className="px-4 py-2 text-white bg-gradient-to-r from-teal-500 to-blue-400 rounded-lg font-semibold shadow hover:from-teal-600 hover:to-blue-500 transition">Kayıt Ol</Link>
+              <Link to="/login" className="px-3 py-2 rounded-lg text-[#234e52] font-medium hover:bg-teal-50 hover:text-teal-700 transition">Log In</Link>
+              <Link to="/register" className="px-4 py-2 text-white bg-gradient-to-r from-teal-500 to-blue-400 rounded-lg font-semibold shadow hover:from-teal-600 hover:to-blue-500 transition">Sign Up</Link>
             </>
           )}
         </div>
